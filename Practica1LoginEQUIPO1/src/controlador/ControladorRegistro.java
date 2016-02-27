@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Usuario;
+import negocio.GestionarArchivo;
+
 /**
  * Servlet implementation class ControladorRegistro
  */
@@ -51,13 +54,33 @@ public class ControladorRegistro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		String nombre=request.getParameter("nombres");
-		String apellidoPaterno=request.getParameter("apellidoPaterno");
-		String apellidoMaterno=request.getParameter("apellidoMaterno");
-		String correo = request.getParameter("correoElectronico");
-		String contrasena = request.getParameter("contrasena");
-		
-		System.out.println(nombre+"\n"+apellidoMaterno+"\n"+apellidoPaterno+"\n"+correo+"\n"+contrasena);
+		GestionarArchivo archivoRegistro = new GestionarArchivo();
+				
+		//instancia usuario para agregar los datos obtenidos
+				Usuario usuario = new Usuario();
+				
+				String ruta =request.getContextPath()+"/Practica1LoginEQUIPO1/WebContent/archivos/prueba.txt";
+				System.out.println("ruta: "+ruta);
+				//Obtiene datos del formulario
+				String nombre=request.getParameter("nombres");
+				String apellidoPaterno=request.getParameter("apellidoPaterno");
+				String apellidoMaterno=request.getParameter("apellidoMaterno");
+				String correo = request.getParameter("correoElectronico");
+				String contrasena = request.getParameter("contrasena");
+				
+				System.out.println(nombre+"\n"+apellidoMaterno+"\n"+apellidoPaterno+"\n"+correo+"\n"+contrasena);
+				
+				//Agrega los datos obtenidos a la instancia
+				usuario.setNombres(nombre);
+				usuario.setApellidoPaterno(apellidoPaterno);
+				usuario.setApellidoMaterno(apellidoMaterno);
+				usuario.setCorreo(correo);
+				usuario.setContrasena(contrasena);
+				
+				//enviar datos al archivo 
+				archivoRegistro.crearUsuario(usuario);
+				
+				
 	}
 
 }
