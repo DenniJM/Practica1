@@ -2,8 +2,8 @@ package modelo;
 
 public class Usuario {
 	private String nombres;
-	private String apeidoPaterno;
-	private String apeidoMaterno;
+	private String apellidoPaterno;
+	private String apellidoMaterno;
 	private String correo;
 	private String contrasena;
 
@@ -20,20 +20,20 @@ public class Usuario {
 		this.nombres = nombres;
 	}
 
-	public String getApeidoPaterno() {
-		return apeidoPaterno;
+	public String getApellidoPaterno() {
+		return apellidoPaterno;
 	}
 
-	public void setApeidoPaterno(String apeidoPaterno) {
-		this.apeidoPaterno = apeidoPaterno;
+	public void setApellidoPaterno(String apellidoPaterno) {
+		this.apellidoPaterno = apellidoPaterno;
 	}
 
-	public String getApeidoMaterno() {
-		return apeidoMaterno;
+	public String getApellidoMaterno() {
+		return apellidoMaterno;
 	}
 
-	public void setApeidoMaterno(String apeidoMaterno) {
-		this.apeidoMaterno = apeidoMaterno;
+	public void setApellidoMaterno(String apellidoMaterno) {
+		this.apellidoMaterno = apellidoMaterno;
 	}
 
 	public String getCorreo() {
