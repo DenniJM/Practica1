@@ -70,10 +70,13 @@ public class ControladorLogin extends HttpServlet {
 			System.out.println("Usuario no encontrado");
 			response.setContentType("text/html");
 			PrintWriter salida = response.getWriter();
-			salida.println("<HTML>");
+			salida.println("<!DOCTYPE html><HTML>");
 		    salida.println("<HEAD><TITLE>Inicio de sesion</TITLE></HEAD>");
 		    salida.println("<BODY>");
-		    salida.println("<BIG>Usuario no valido</BIG>");
+		    salida.println("<h1>Usuario no valido</h1>");
+		    //salida.println("<form id=\"formularioRegistro\" method=\"post\" action=\"registro\">");
+		    //salida.println("<input type=\"text\" name=\"nombres\" id=\"nombres\" required=\"required\"> <br>");
+		    salida.println("</form>");
 		    salida.println("</BODY></HTML>");
 		    salida.close();
 		}else if(usuarioEncontrado.getNombres().equals(usuario) && usuarioEncontrado.getContrasena().equals(pass)){
