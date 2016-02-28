@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Usuario;
 import negocio.GestionarArchivo;
 
 /**
@@ -16,12 +17,14 @@ import negocio.GestionarArchivo;
 @WebServlet("/login")
 public class ControladorLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Usuario usuarioEncontrado;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ControladorLogin() {
         super();
+        usuarioEncontrado = new Usuario();
         // TODO Auto-generated constructor stub
     }
 
@@ -54,11 +57,15 @@ public class ControladorLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		GestionarArchivo archivoregistro = new GestionarArchivo();
+		String ruta = request.getServletContext().getRealPath("/");
+		GestionarArchivo archivoregistro = new GestionarArchivo(ruta+"/archivos");
 		String usuario = request.getParameter("usuario");
-		String contrasena = request.getParameter("contrasena");
-		
-		archivoregistro.buscarUsuario(usuario, contrasena);
+		String pass = request.getParameter("contrasena");
+		System.out.println("nombre: "+usuario+" contrasena "+pass);
+		usuarioEncontrado = archivoregistro.buscarUsuario(usuario);
+		if(usuarioEncontrado.getNombres().equals(usuario) && usuarioEncontrado.getContrasena().equals(pass)){
+			System.out.println("usuario encontrado");
+		}
 		
 	}
 

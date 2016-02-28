@@ -54,13 +54,14 @@ public class ControladorRegistro extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		GestionarArchivo archivoRegistro = new GestionarArchivo();
+		String ruta =request.getServletContext().getRealPath("/");
+		GestionarArchivo archivoRegistro = new GestionarArchivo(ruta+"/archivos");
 				
 		//instancia usuario para agregar los datos obtenidos
 				Usuario usuario = new Usuario();
 				
-				String ruta =request.getContextPath()+"/Practica1LoginEQUIPO1/WebContent/archivos/prueba.txt";
-				System.out.println("ruta: "+ruta);
+				
+				//System.out.println("ruta: "+ruta);
 				//Obtiene datos del formulario
 				String nombre=request.getParameter("nombres");
 				String apellidoPaterno=request.getParameter("apellidoPaterno");
@@ -79,6 +80,8 @@ public class ControladorRegistro extends HttpServlet {
 				
 				//enviar datos al archivo 
 				archivoRegistro.crearUsuario(usuario);
+				response.sendRedirect("Registro.html");
+				System.gc();
 				
 				
 	}

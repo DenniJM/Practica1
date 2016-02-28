@@ -52,5 +52,9 @@ public class Usuario {
 		this.contrasena = contrasena;
 	}
 	
+	public String toString(){
+		return this.nombres+this.apellidoPaterno+this.apellidoMaterno+this.correo+this.contrasena;
+	}
+	
 
 }
