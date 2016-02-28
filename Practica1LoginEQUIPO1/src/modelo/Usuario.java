@@ -56,5 +56,8 @@ public class Usuario {
 		return this.nombres+this.apellidoPaterno+this.apellidoMaterno+this.correo+this.contrasena;
 	}
 	
+	public boolean isEmpty(){
+		return nombres.equals("") && !apellidoMaterno.equals("") && apellidoPaterno.equals("") && correo.equals("") && contrasena.equals(""); 
+	}
 
 }

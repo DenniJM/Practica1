@@ -17,12 +17,13 @@ import negocio.GestionarArchivo;
 @WebServlet("/registro")
 public class ControladorRegistro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private Usuario nuevoUsuario;   
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ControladorRegistro() {
         super();
+        nuevoUsuario = new Usuario();
         // TODO Auto-generated constructor stub
     }
 
@@ -57,12 +58,7 @@ public class ControladorRegistro extends HttpServlet {
 		String ruta =request.getServletContext().getRealPath("/");
 		GestionarArchivo archivoRegistro = new GestionarArchivo(ruta+"/archivos");
 				
-		//instancia usuario para agregar los datos obtenidos
-				Usuario usuario = new Usuario();
-				
-				
-				//System.out.println("ruta: "+ruta);
-				//Obtiene datos del formulario
+
 				String nombre=request.getParameter("nombres");
 				String apellidoPaterno=request.getParameter("apellidoPaterno");
 				String apellidoMaterno=request.getParameter("apellidoMaterno");
@@ -72,14 +68,14 @@ public class ControladorRegistro extends HttpServlet {
 				System.out.println(nombre+"\n"+apellidoMaterno+"\n"+apellidoPaterno+"\n"+correo+"\n"+contrasena);
 				
 				//Agrega los datos obtenidos a la instancia
-				usuario.setNombres(nombre);
-				usuario.setApellidoPaterno(apellidoPaterno);
-				usuario.setApellidoMaterno(apellidoMaterno);
-				usuario.setCorreo(correo);
-				usuario.setContrasena(contrasena);
+				nuevoUsuario.setNombres(nombre);
+				nuevoUsuario.setApellidoPaterno(apellidoPaterno);
+				nuevoUsuario.setApellidoMaterno(apellidoMaterno);
+				nuevoUsuario.setCorreo(correo);
+				nuevoUsuario.setContrasena(contrasena);
 				
 				//enviar datos al archivo 
-				archivoRegistro.crearUsuario(usuario);
+				archivoRegistro.crearUsuario(nuevoUsuario);
 				response.sendRedirect("Registro.html");
 				System.gc();
 				

@@ -1,6 +1,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -63,10 +65,21 @@ public class ControladorLogin extends HttpServlet {
 		String pass = request.getParameter("contrasena");
 		System.out.println("nombre: "+usuario+" contrasena "+pass);
 		usuarioEncontrado = archivoregistro.buscarUsuario(usuario);
-		if(usuarioEncontrado.getNombres().equals(usuario) && usuarioEncontrado.getContrasena().equals(pass)){
+
+		if(usuarioEncontrado==null){
+			System.out.println("Usuario no encontrado");
+			response.setContentType("text/html");
+			PrintWriter salida = response.getWriter();
+			salida.println("<HTML>");
+		    salida.println("<HEAD><TITLE>Inicio de sesion</TITLE></HEAD>");
+		    salida.println("<BODY>");
+		    salida.println("<BIG>Usuario no valido</BIG>");
+		    salida.println("</BODY></HTML>");
+		    salida.close();
+		}else if(usuarioEncontrado.getNombres().equals(usuario) && usuarioEncontrado.getContrasena().equals(pass)){
 			System.out.println("usuario encontrado");
 		}
-		
+		System.gc();
 	}
 
 }
