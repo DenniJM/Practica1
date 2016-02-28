@@ -59,7 +59,7 @@ public class ControladorRegistro extends HttpServlet {
 				
 		//instancia usuario para agregar los datos obtenidos
 				Usuario usuario = new Usuario();
-				
+				boolean creacionUsuario;
 				
 				//System.out.println("ruta: "+ruta);
 				//Obtiene datos del formulario
@@ -79,8 +79,13 @@ public class ControladorRegistro extends HttpServlet {
 				usuario.setContrasena(contrasena);
 				
 				//enviar datos al archivo 
-				archivoRegistro.crearUsuario(usuario);
-				response.sendRedirect("Registro.html");
+				creacionUsuario=archivoRegistro.crearUsuario(usuario);
+				if(creacionUsuario){
+					response.sendRedirect("registroExitoso.html");
+				}else{
+					response.sendRedirect("registroFallido.html");
+				}
+				
 				System.gc();
 				
 				
