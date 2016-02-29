@@ -53,7 +53,7 @@ public class GestionarArchivo {
 
 	// login
 	public Usuario buscarUsuario(String usuario) {
-		String linea="";
+		String linea=" | | | | ";
 		String []lineaDividida=null;
 		int i = 0;
 		try {
@@ -65,7 +65,10 @@ public class GestionarArchivo {
 				//System.out.println("linea del archivo " + linea.length());
 				lineaDividida = linea.split("\\|");
 
-				if(lineaDividida[0].equals(usuario)){
+				
+				if(lineaDividida.length==0){
+					unUsuario=null;
+				}else if(lineaDividida[3].equals(usuario)){
 					System.out.println("Usuario: "+usuario+" encontrado"+" Longitud de lineaDividida: "+lineaDividida.length);
 					unUsuario.setNombres(lineaDividida[0]);
 					unUsuario.setApellidoPaterno(lineaDividida[1]);
@@ -73,8 +76,6 @@ public class GestionarArchivo {
 					unUsuario.setCorreo(lineaDividida[3]);
 					unUsuario.setContrasena(lineaDividida[4]);
 					return unUsuario;
-				}else if(lineaDividida.length==0){
-					unUsuario=null;
 				}
 				linea=bufferLinea.readLine();
 			}
