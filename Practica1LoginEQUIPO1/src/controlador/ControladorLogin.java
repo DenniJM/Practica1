@@ -82,9 +82,6 @@ public class ControladorLogin extends HttpServlet {
 		    salida.close();
 		}else if(usuarioEncontrado.getCorreo().equals(usuario) && usuarioEncontrado.getContrasena().equals(pass)){
 			System.out.println("usuario encontrado");
-			response.sendRedirect("loginExitoso.html");
-		}else{
-			response.sendRedirect("loginError.html");
 		}
 		System.gc();
 	}

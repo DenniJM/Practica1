@@ -23,14 +23,14 @@ public class GestionarArchivo {
 		try {
 			//Creacion o apertura del archivo
 			rutaDelArchivo = new File(ruta,"prueba.txt");
-			System.out.println(rutaDelArchivo.getPath());
+			//System.out.println(rutaDelArchivo.getPath());
 
 		} catch (NullPointerException e) {
 			System.out.println("Error al crear el archivo" + e);
 		}
 	}
 
-	public boolean crearUsuario(Usuario usuario) {
+	public void crearUsuario(Usuario usuario) {
 		try {
 			FileWriter agregarUsuario = new FileWriter(rutaDelArchivo, true);
 			agregarUsuario.write(usuario.getNombres() + "|" + usuario.getApellidoPaterno() + "|"
@@ -38,11 +38,8 @@ public class GestionarArchivo {
 			/*System.out.println(usuario.getNombres() + "|" + usuario.getApellidoPaterno() + "|"
 					+ usuario.getApellidoMaterno() + "|" + usuario.getCorreo() + "|" + usuario.getContrasena() + "&");*/
 			agregarUsuario.close();
-			return true;
-			
 		} catch (IOException e) {
 			System.out.println("Error al agregar un usuario" + e);
-			return false;
 		}
 	
 	}
