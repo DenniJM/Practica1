@@ -9,7 +9,6 @@ public class Usuario {
 
 	public Usuario() {
 		// TODO Auto-generated constructor stub
-		
 	}
 
 	public String getNombres() {
@@ -52,12 +51,5 @@ public class Usuario {
 		this.contrasena = contrasena;
 	}
 	
-	public String toString(){
-		return this.nombres+this.apellidoPaterno+this.apellidoMaterno+this.correo+this.contrasena;
-	}
 	
-	public boolean isEmpty(){
-		return nombres.equals("") && !apellidoMaterno.equals("") && apellidoPaterno.equals("") && correo.equals("") && contrasena.equals(""); 
-	}
-
 }

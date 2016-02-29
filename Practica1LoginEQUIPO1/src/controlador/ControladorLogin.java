@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.Usuario;
 import negocio.GestionarArchivo;
@@ -20,6 +21,7 @@ import negocio.GestionarArchivo;
 public class ControladorLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Usuario usuarioEncontrado;
+	private HttpSession sesion;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -66,6 +68,7 @@ public class ControladorLogin extends HttpServlet {
 		System.out.println("nombre: "+usuario+" contrasena "+pass);
 		usuarioEncontrado = archivoregistro.buscarUsuario(usuario);
 		System.out.println("Usuario: "+usuarioEncontrado.toString());
+		
 		if(usuarioEncontrado==null){
 			System.out.println("Usuario no encontrado");
 			response.setContentType("text/html");
@@ -82,6 +85,10 @@ public class ControladorLogin extends HttpServlet {
 		    salida.close();
 		}else if(usuarioEncontrado.getCorreo().equals(usuario) && usuarioEncontrado.getContrasena().equals(pass)){
 			System.out.println("usuario encontrado");
+			response.sendRedirect("loginExitoso.html");
+			sesion = request.getSession(); 
+			sesion.setAttribute("ACTUALIZACION", usuarioEncontrado);
+			
 		}
 		System.gc();
 	}
