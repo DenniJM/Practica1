@@ -59,7 +59,7 @@ public class ControladorRegistro extends HttpServlet {
 		GestionarArchivo archivoRegistro = new GestionarArchivo(ruta+"/archivos");
 
 		//instancia usuario para agregar los datos obtenidos
-				Usuario usuario = new Usuario();
+				//Usuario usuario = new Usuario();
 				boolean creacionUsuario;
 
 				String nombre=request.getParameter("nombres");
@@ -79,8 +79,8 @@ public class ControladorRegistro extends HttpServlet {
 
 				//enviar datos al archivo
 
-				archivoRegistro.crearUsuario(nuevoUsuario);
-				creacionUsuario=archivoRegistro.crearUsuario(usuario);
+				//archivoRegistro.crearUsuario(nuevoUsuario);
+				creacionUsuario=archivoRegistro.crearUsuario(nuevoUsuario);
 				if(creacionUsuario){
 					response.sendRedirect("registroExitoso.html");
 				}else{
