@@ -65,7 +65,7 @@ public class ControladorLogin extends HttpServlet {
 		String pass = request.getParameter("contrasena");
 		System.out.println("nombre: "+usuario+" contrasena "+pass);
 		usuarioEncontrado = archivoregistro.buscarUsuario(usuario);
-
+		System.out.println("Usuario: "+usuarioEncontrado.toString());
 		if(usuarioEncontrado==null){
 			System.out.println("Usuario no encontrado");
 			response.setContentType("text/html");
