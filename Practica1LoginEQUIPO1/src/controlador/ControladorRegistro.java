@@ -17,7 +17,7 @@ import negocio.GestionarArchivo;
 @WebServlet("/registro")
 public class ControladorRegistro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private Usuario nuevoUsuario;   
+    private Usuario nuevoUsuario;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -57,29 +57,38 @@ public class ControladorRegistro extends HttpServlet {
 		//doGet(request, response);
 		String ruta =request.getServletContext().getRealPath("/");
 		GestionarArchivo archivoRegistro = new GestionarArchivo(ruta+"/archivos");
-				
+
+		//instancia usuario para agregar los datos obtenidos
+				Usuario usuario = new Usuario();
+				boolean creacionUsuario;
 
 				String nombre=request.getParameter("nombres");
 				String apellidoPaterno=request.getParameter("apellidoPaterno");
 				String apellidoMaterno=request.getParameter("apellidoMaterno");
 				String correo = request.getParameter("correoElectronico");
 				String contrasena = request.getParameter("contrasena");
-				
+
 				System.out.println(nombre+"\n"+apellidoMaterno+"\n"+apellidoPaterno+"\n"+correo+"\n"+contrasena);
-				
+
 				//Agrega los datos obtenidos a la instancia
 				nuevoUsuario.setNombres(nombre);
 				nuevoUsuario.setApellidoPaterno(apellidoPaterno);
 				nuevoUsuario.setApellidoMaterno(apellidoMaterno);
 				nuevoUsuario.setCorreo(correo);
 				nuevoUsuario.setContrasena(contrasena);
-				
-				//enviar datos al archivo 
+
+				//enviar datos al archivo
+
 				archivoRegistro.crearUsuario(nuevoUsuario);
-				response.sendRedirect("Registro.html");
+				creacionUsuario=archivoRegistro.crearUsuario(usuario);
+				if(creacionUsuario){
+					response.sendRedirect("registroExitoso.html");
+				}else{
+					response.sendRedirect("registroFallido.html");
+				}
 				System.gc();
-				
-				
+
+
 	}
 
 }
