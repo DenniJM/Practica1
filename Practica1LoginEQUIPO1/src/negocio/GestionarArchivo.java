@@ -62,17 +62,10 @@ public class GestionarArchivo {
 			// StringTokenizer separador = null;
 
 			while (linea!= null) {
-				System.out.println("linea del archivo " + linea);
+				//System.out.println("linea del archivo " + linea.length());
 				lineaDividida = linea.split("\\|");
-				
-				if(lineaDividida.length==0){
-					unUsuario=null;
-					/*unUsuario.setNombres("");
-					unUsuario.setApellidoPaterno("");
-					unUsuario.setApellidoMaterno("");
-					unUsuario.setCorreo("");
-					unUsuario.setContrasena("");*/
-				}else if(lineaDividida[0].equals(usuario)){
+
+				if(lineaDividida[0].equals(usuario)){
 					System.out.println("Usuario: "+usuario+" encontrado"+" Longitud de lineaDividida: "+lineaDividida.length);
 					unUsuario.setNombres(lineaDividida[0]);
 					unUsuario.setApellidoPaterno(lineaDividida[1]);
@@ -80,6 +73,8 @@ public class GestionarArchivo {
 					unUsuario.setCorreo(lineaDividida[3]);
 					unUsuario.setContrasena(lineaDividida[4]);
 					return unUsuario;
+				}else if(lineaDividida.length==0){
+					unUsuario=null;
 				}
 				linea=bufferLinea.readLine();
 			}
