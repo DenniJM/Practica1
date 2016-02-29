@@ -78,8 +78,9 @@ public class ControladorLogin extends HttpServlet {
 		    //salida.println("<input type=\"text\" name=\"nombres\" id=\"nombres\" required=\"required\"> <br>");
 		    salida.println("</form>");
 		    salida.println("</BODY></HTML>");
+		    salida.flush();
 		    salida.close();
-		}else if(usuarioEncontrado.getNombres().equals(usuario) && usuarioEncontrado.getContrasena().equals(pass)){
+		}else if(usuarioEncontrado.getCorreo().equals(usuario) && usuarioEncontrado.getContrasena().equals(pass)){
 			System.out.println("usuario encontrado");
 			response.sendRedirect("loginExitoso.html");
 		}else{
